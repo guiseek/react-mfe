@@ -1,19 +1,12 @@
 import { ModuleFederationConfig } from '@nx/webpack';
 
-const isCommon = (libraryName: string) => {
-  const commonEntryPoints = ['@react-mfe/common', '@react-mfe/common/di', '@react-mfe/common/event'];
-  return commonEntryPoints.includes(libraryName);
-};
-
 const config: ModuleFederationConfig = {
   name: 'mfe1',
 
   library: { type: 'var', name: 'mfe1' },
 
   shared: (libraryName: string) => {
-    console.log(libraryName);
-    
-    if (isCommon(libraryName)) {
+    if (libraryName.startsWith('@react-mfe/common')) {
       return {
         requiredVersion: '0.0.1',
         singleton: true,
