@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {
-  Event,
   add,
   use,
+  Event,
   type EventMap,
   type EventMessage,
 } from '@react-mfe/common';
