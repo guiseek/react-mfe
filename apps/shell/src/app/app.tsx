@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Event, add, use } from '@react-mfe/common';
+import {
+  Event,
+  add,
+  use,
+  type EventMap,
+  type EventMessage,
+} from '@react-mfe/common';
 import { Link, Route, Routes } from 'react-router-dom';
 import { loadRemoteModule } from '@nx/react/mf';
 
@@ -11,23 +17,30 @@ const Mfe1 = React.lazy(() => loadRemoteModule('mfe1', './Module'));
 
 const Mfe2 = React.lazy(() => loadRemoteModule('mfe2', './Module'));
 
-interface EventMap {
-  hi: string;
-  hello: string;
-}
-
 export function App() {
-  const [message, setMessage] = React.useState<string>('empty');
+  const [message, setMessage] = React.useState<EventMessage>();
 
   const event = use(Event<EventMap>);
 
-  event.on('hi', setMessage);
+  event.on('message', (message) => {
+    if (message.to === 'shell') {
+      setMessage(message);
+    }
+  });
 
   return (
     <React.Suspense fallback={null}>
+      <h1>Shell</h1>
+
+      <hr />
+
       <ul>
         <li>
           <Link to="/">Home</Link>
+        </li>
+
+        <li>
+          <Link to="/mfes">Mfes</Link>
         </li>
 
         <li>
@@ -38,9 +51,32 @@ export function App() {
           <Link to="/mfe2">Mfe2</Link>
         </li>
       </ul>
-      <p>{message}</p>
+
+      <hr />
+
+      <em>
+        {' '}
+        <strong>From:</strong> {message?.from}
+      </em>
+      <p>
+        {' '}
+        <strong>Data:</strong> {message?.data}
+      </p>
+
+      <hr />
+
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route
+          path="/mfes"
+          element={
+            <main>
+              <Mfe1 />
+              <Mfe2 />
+            </main>
+          }
+        />
 
         <Route path="/mfe1" element={<Mfe1 />} />
 

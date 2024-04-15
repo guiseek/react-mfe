@@ -1,1 +1,1 @@
-export { useEvent, Event, event } from './event/index';
+export * from './event/index';
