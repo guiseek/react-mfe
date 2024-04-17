@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "CommonAuthConfig",
+  "title": "Common Auth Config",
+  "type": "object",
+  "properties": {
+    "projectRoot": {
+      "type": "string",
+      "description": "The path to the root of the selected project.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-priority": "important",
+      "x-prompt": "What project root you like to generate auth config?"
+    },
+    "url": {
+      "type": "string",
+      "description": "The authentication URL",
+      "x-priority": "important",
+      "x-prompt": "What URL would you like to use to authenticate?"
+    },
+    "port": {
+      "type": "number",
+      "description": "The authentication port",
+      "x-priority": "important",
+      "x-prompt": "What port would you like to use to authenticate?"
+    },
+    "user": {
+      "type": "string",
+      "description": "The authentication user",
+      "x-priority": "important",
+      "x-prompt": "What user would you like to use to authenticate?"
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "description": "Skip formatting files.",
+      "default": false,
+      "x-priority": "internal"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["projectRoot", "url", "port", "user"]
+}

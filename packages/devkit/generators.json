@@ -1,0 +1,14 @@
+{
+  "generators": {
+    "react-host": {
+      "factory": "./src/generators/react/host/generator",
+      "schema": "./src/generators/react/host/schema.json",
+      "description": "React host MFE generator"
+    },
+    "common-auth-config": {
+      "factory": "./src/generators/common/auth-config/generator",
+      "schema": "./src/generators/common/auth-config/schema.json",
+      "description": "Common auth config generator"
+    }
+  }
+}

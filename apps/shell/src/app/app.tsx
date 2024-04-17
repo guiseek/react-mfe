@@ -1,15 +1,10 @@
 import * as React from 'react';
-import {
-  add,
-  use,
-  Event,
-  type EventMap,
-  type EventMessage,
-} from '@react-mfe/common';
+import { add, Event } from '@react-mfe/common';
 import { Link, Route, Routes } from 'react-router-dom';
 import { loadRemoteModule } from '@nx/react/mf';
 
 import { Home } from './home';
+import { Message } from './message';
 
 add(Event);
 
@@ -18,16 +13,6 @@ const Mfe1 = React.lazy(() => loadRemoteModule('mfe1', './Module'));
 const Mfe2 = React.lazy(() => loadRemoteModule('mfe2', './Module'));
 
 export function App() {
-  const [message, setMessage] = React.useState<EventMessage>();
-
-  const event = use(Event<EventMap>);
-
-  event.on('message', (message) => {
-    if (message.to === 'shell') {
-      setMessage(message);
-    }
-  });
-
   return (
     <React.Suspense fallback={null}>
       <h1>Shell</h1>
@@ -54,14 +39,7 @@ export function App() {
 
       <hr />
 
-      <em>
-        {' '}
-        <strong>From:</strong> {message?.from}
-      </em>
-      <p>
-        {' '}
-        <strong>Data:</strong> {message?.data}
-      </p>
+      <Message />
 
       <hr />
 
