@@ -1,1 +1,1 @@
-{ "mfe1": "/mfe1", "mfe2": "/mfe2" }
+{ "mfe1": "./mfe1", "mfe2": "./mfe2" }
