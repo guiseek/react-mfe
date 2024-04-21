@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react';
-import {
-  use,
-  Event,
-  type EventMap,
-  type EventMessage,
-} from '@react-mfe/common';
+import { type EventMessage } from '@react-mfe/common';
 
-export function Message() {
-  const [message, setMessage] = useState<EventMessage>();
+interface MessageProps {
+  message: EventMessage;
+}
 
-  const event = use(Event<EventMap>);
-
-  useEffect(() => {
-    event.on('message', (message) => {
-      if (message.to === 'shell') {
-        setMessage(message);
-      }
-    });
-  });
-
+export function Message({ message }: MessageProps) {
   return (
     <>
-      <em>
-        <strong>From:</strong> {message?.from}
-      </em>
-      <p>
-        <strong>Data:</strong> {message?.data}
-      </p>
+      <dt>
+        <em>{message.from}</em>
+      </dt>
+      <dd>{message.data}</dd>
     </>
   );
 }

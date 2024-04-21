@@ -14,7 +14,6 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "ZjZhZWFmMzctZmQ3Ny00ZTUzLThiZGUtMWUyZTViM2U4NDgwfHJlYWQtd3JpdGU=",
   "targetDefaults": {
     "@nx/eslint:lint": {
       "cache": true,
@@ -77,5 +76,6 @@
         "targetName": "lint"
       }
     }
-  ]
+  ],
+  "nxCloudAccessToken": "MTliMDQ2MWEtODk2NS00NTdhLWJhY2EtYmI1ZTY0Yzg5MDg3fHJlYWQtd3JpdGU="
 }

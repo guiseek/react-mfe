@@ -11,7 +11,7 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/mfe2",
+        "outputPath": "dist/apps/shell/mfe2",
         "index": "apps/mfe2/src/index.html",
         "baseHref": "/",
         "main": "apps/mfe2/src/main.ts",

@@ -1,20 +1,20 @@
-import * as React from 'react';
-import { add, Event } from '@react-mfe/common';
 import { Link, Route, Routes } from 'react-router-dom';
 import { loadRemoteModule } from '@nx/react/mf';
+import { add, Event } from '@react-mfe/common';
+import { Suspense, lazy } from 'react';
 
 import { Home } from './home';
-import { Message } from './message';
+import { Messages } from './messages';
 
 add(Event);
 
-const Mfe1 = React.lazy(() => loadRemoteModule('mfe1', './Module'));
+const Mfe1 = lazy(() => loadRemoteModule('mfe1', './Module'));
 
-const Mfe2 = React.lazy(() => loadRemoteModule('mfe2', './Module'));
+const Mfe2 = lazy(() => loadRemoteModule('mfe2', './Module'));
 
 export function App() {
   return (
-    <React.Suspense fallback={null}>
+    <Suspense fallback={null}>
       <h1>Shell</h1>
 
       <hr />
@@ -25,21 +25,21 @@ export function App() {
         </li>
 
         <li>
-          <Link to="/mfes">Mfes</Link>
+          <Link to="./mfes">Mfes</Link>
         </li>
 
         <li>
-          <Link to="/mfe1">Mfe1</Link>
+          <Link to="./mfe1">Mfe1</Link>
         </li>
 
         <li>
-          <Link to="/mfe2">Mfe2</Link>
+          <Link to="./mfe2">Mfe2</Link>
         </li>
       </ul>
 
       <hr />
 
-      <Message />
+      <Messages />
 
       <hr />
 
@@ -60,7 +60,7 @@ export function App() {
 
         <Route path="/mfe2" element={<Mfe2 />} />
       </Routes>
-    </React.Suspense>
+    </Suspense>
   );
 }
 
